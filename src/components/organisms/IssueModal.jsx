@@ -16,7 +16,8 @@ const IssueModal = ({ isOpen, onClose, issue = null, onSuccess }) => {
     priority: "medium",
     status: "open",
     assignee: "",
-    reporter: ""
+reporter: "",
+    dueDate: ""
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -30,7 +31,8 @@ const IssueModal = ({ isOpen, onClose, issue = null, onSuccess }) => {
         priority: issue.priority || "medium",
         status: issue.status || "open",
         assignee: issue.assignee || "",
-        reporter: issue.reporter || ""
+reporter: issue.reporter || "",
+        dueDate: issue.dueDate ? issue.dueDate.split('T')[0] : ""
       });
     } else {
       setFormData({
@@ -39,8 +41,9 @@ const IssueModal = ({ isOpen, onClose, issue = null, onSuccess }) => {
         type: "bug",
         priority: "medium",
         status: "open",
-        assignee: "",
-        reporter: ""
+assignee: "",
+        reporter: "",
+        dueDate: ""
       });
     }
     setErrors({});
@@ -186,7 +189,15 @@ const IssueModal = ({ isOpen, onClose, issue = null, onSuccess }) => {
                 onChange={(e) => handleChange("assignee", e.target.value)}
                 placeholder="Person assigned to this issue"
               />
-            </div>
+</div>
+
+            <Input
+              label="Due Date"
+              type="date"
+              value={formData.dueDate}
+              onChange={(e) => handleChange("dueDate", e.target.value)}
+              placeholder="Select due date"
+            />
 
             <Input
               label="Reporter"

@@ -22,10 +22,11 @@ class IssueService {
     await delay(400);
     const maxId = Math.max(...this.issues.map(i => i.Id), 0);
     const newIssue = {
-      ...issueData,
+...issueData,
       Id: maxId + 1,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
+      dueDate: issueData.dueDate || null
     };
     this.issues.push(newIssue);
     return { ...newIssue };
@@ -35,10 +36,11 @@ class IssueService {
     await delay(350);
     const index = this.issues.findIndex(i => i.Id === parseInt(id));
     if (index !== -1) {
-      this.issues[index] = {
+this.issues[index] = {
         ...this.issues[index],
         ...updates,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
+        dueDate: updates.dueDate !== undefined ? updates.dueDate : this.issues[index].dueDate
       };
       return { ...this.issues[index] };
     }

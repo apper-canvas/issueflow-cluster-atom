@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { DndContext, DragOverlay, KeyboardSensor, PointerSensor, closestCorners, useSensor, useSensors } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { format, isPast } from "date-fns";
 import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import IssueDetailModal from "@/components/organisms/IssueDetailModal";
 import IssueModal from "@/components/organisms/IssueModal";
@@ -98,7 +100,7 @@ const handleDelete = async (id) => {
 
   const activeIssue = activeId ? issues.find(i => i.Id === parseInt(activeId)) : null;
 
-  const columns = useMemo(() => [
+const columns = useMemo(() => [
     {
       id: "open",
       title: "Open",
@@ -179,7 +181,7 @@ if (error) return <Error message={error} onRetry={loadIssues} />;
         </div>
       </div>
 
-      <DragOverlay>
+<DragOverlay>
         {activeIssue ? (
           <div className="bg-white rounded-lg border-2 border-primary shadow-2xl p-3 w-[300px] opacity-90">
             <div className="flex items-start gap-2 mb-2">
@@ -194,10 +196,28 @@ if (error) return <Error message={error} onRetry={loadIssues} />;
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-mono text-secondary-500">#{activeIssue.Id}</span>
+                  {activeIssue.dueDate && isPast(new Date(activeIssue.dueDate)) && activeIssue.status !== "resolved" && activeIssue.status !== "closed" && (
+                    <div className="flex items-center gap-1 text-red-600">
+                      <ApperIcon name="AlertCircle" size={12} />
+                      <span className="text-xs font-semibold">Overdue</span>
+                    </div>
+                  )}
                 </div>
                 <h4 className="text-sm font-medium text-secondary-900 line-clamp-2">
                   {activeIssue.title}
                 </h4>
+                {activeIssue.dueDate && (
+                  <div className={`flex items-center gap-1 mt-1 ${
+                    isPast(new Date(activeIssue.dueDate)) && activeIssue.status !== "resolved" && activeIssue.status !== "closed" 
+                      ? "text-red-600" 
+                      : "text-secondary-500"
+                  }`}>
+                    <ApperIcon name="CalendarClock" size={12} />
+                    <span className="text-xs">
+                      {format(new Date(activeIssue.dueDate), "MMM d")}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -17,12 +17,13 @@ const IssuesPage = ({ searchQuery, onCreateIssue, createModalOpen, onCreateModal
   const [error, setError] = useState("");
   const [selectedIssue, setSelectedIssue] = useState(null);
   const [editingIssue, setEditingIssue] = useState(null);
-  const [detailModalOpen, setDetailModalOpen] = useState(false);
+const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [sortConfig, setSortConfig] = useState({ key: "Id", direction: "desc" });
   const [filters, setFilters] = useState({
     status: [],
     priority: [],
-    type: []
+    type: [],
+    dueDate: []
   });
 
   const loadIssues = async () => {
@@ -82,9 +83,9 @@ const IssuesPage = ({ searchQuery, onCreateIssue, createModalOpen, onCreateModal
       let aValue = a[sortConfig.key];
       let bValue = b[sortConfig.key];
 
-      if (sortConfig.key === "updatedAt" || sortConfig.key === "createdAt") {
-        aValue = new Date(aValue).getTime();
-        bValue = new Date(bValue).getTime();
+if (sortConfig.key === "updatedAt" || sortConfig.key === "createdAt" || sortConfig.key === "dueDate") {
+        aValue = aValue ? new Date(aValue).getTime() : 0;
+        bValue = bValue ? new Date(bValue).getTime() : 0;
       }
 
       if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;

@@ -2,10 +2,11 @@ import { forwardRef } from "react";
 import { cn } from "@/utils/cn";
 
 const Input = forwardRef(({ 
-  className,
+className,
   error,
   label,
-  ...props 
+  type = "text",
+  ...props
 }, ref) => {
   return (
     <div className="w-full">

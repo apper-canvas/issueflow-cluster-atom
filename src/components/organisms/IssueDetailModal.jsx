@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { format } from "date-fns";
+import { format, isPast } from "date-fns";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import StatusBadge from "@/components/molecules/StatusBadge";
@@ -87,7 +87,7 @@ const IssueDetailModal = ({ isOpen, onClose, issue, onEdit, onDelete }) => {
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold text-secondary-700 mb-2">Created</h3>
+<h3 className="text-sm font-semibold text-secondary-700 mb-2">Created</h3>
                 <div className="flex items-center gap-2 text-secondary-900">
                   <ApperIcon name="Calendar" size={16} className="text-secondary-500" />
                   {format(new Date(issue.createdAt), "MMM d, yyyy 'at' h:mm a")}
@@ -100,6 +100,29 @@ const IssueDetailModal = ({ isOpen, onClose, issue, onEdit, onDelete }) => {
                   <ApperIcon name="Clock" size={16} className="text-secondary-500" />
                   {format(new Date(issue.updatedAt), "MMM d, yyyy 'at' h:mm a")}
                 </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold text-secondary-700 mb-2">Due Date</h3>
+                {issue.dueDate ? (
+                  <div>
+                    <div className="flex items-center gap-2 text-secondary-900">
+                      <ApperIcon name="CalendarClock" size={16} className="text-secondary-500" />
+                      {format(new Date(issue.dueDate), "MMM d, yyyy 'at' h:mm a")}
+                    </div>
+                    {isPast(new Date(issue.dueDate)) && issue.status !== "resolved" && issue.status !== "closed" && (
+                      <div className="flex items-center gap-1.5 mt-2 text-red-600">
+                        <ApperIcon name="AlertCircle" size={14} />
+                        <span className="text-xs font-semibold uppercase">Overdue</span>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-secondary-400">
+                    <ApperIcon name="CalendarClock" size={16} />
+                    <span className="text-sm">No due date set</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

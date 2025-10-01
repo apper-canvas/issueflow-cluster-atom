@@ -219,11 +219,11 @@ const UserModal = ({ user, onClose, onSuccess }) => {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" disabled={loading}>
+<Button type="submit" disabled={loading}>
                   {loading ? (
                     <>
                       <ApperIcon name="Loader2" size={16} className="animate-spin" />
-                      {user ? 'Updating...' : 'Creating...'}
+                      <span className="ml-2">{user ? 'Updating...' : 'Creating...'}</span>
                     </>
                   ) : (
                     <>{user ? 'Update User' : 'Create User'}</>

@@ -52,11 +52,10 @@ reporter: "",
     setErrors({});
   }, [issue, isOpen]);
 
-  const validate = () => {
+const validate = () => {
     const newErrors = {};
     if (!formData.title.trim()) newErrors.title = "Title is required";
     if (!formData.description.trim()) newErrors.description = "Description is required";
-    if (!formData.reporter.trim()) newErrors.reporter = "Reporter is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

@@ -23,17 +23,19 @@ const IssueTable = ({ issues, onIssueClick, sortConfig, onSort }) => {
         <thead className="bg-secondary-50 border-y border-secondary-200">
             <tr>
                 <th className="px-4 py-3 text-left">
-                    <button
+<button
                         onClick={() => handleSort("Id")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">ID
-                                        <ApperIcon name={getSortIcon("Id")} size={14} />
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        ID
+                        <ApperIcon name={getSortIcon("Id")} size={14} />
                     </button>
                 </th>
                 <th className="px-4 py-3 text-left">
-                    <button
+<button
                         onClick={() => handleSort("title")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">Title
-                                        <ApperIcon name={getSortIcon("title")} size={14} />
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        Title
+                        <ApperIcon name={getSortIcon("title")} size={14} />
                     </button>
                 </th>
                 <th className="px-4 py-3 text-left">
@@ -43,16 +45,18 @@ const IssueTable = ({ issues, onIssueClick, sortConfig, onSort }) => {
                 </th>
                 <th className="px-4 py-3 text-left">
                     <button
-                        onClick={() => handleSort("priority")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">Priority
-                                        <ApperIcon name={getSortIcon("priority")} size={14} />
+onClick={() => handleSort("priority")}
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        Priority
+                        <ApperIcon name={getSortIcon("priority")} size={14} />
                     </button>
                 </th>
                 <th className="px-4 py-3 text-left">
                     <button
-                        onClick={() => handleSort("status")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">Status
-                                        <ApperIcon name={getSortIcon("status")} size={14} />
+onClick={() => handleSort("status")}
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        Status
+                        <ApperIcon name={getSortIcon("status")} size={14} />
                     </button>
                 </th>
                 <th className="px-4 py-3 text-left">
@@ -61,17 +65,19 @@ const IssueTable = ({ issues, onIssueClick, sortConfig, onSort }) => {
                                       </span>
                 </th>
                 <th className="px-4 py-3 text-left">
-                    <button
+<button
                         onClick={() => handleSort("updatedAt")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">Updated
-                                        <ApperIcon name={getSortIcon("updatedAt")} size={14} />
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        Updated
+                        <ApperIcon name={getSortIcon("updatedAt")} size={14} />
                     </button>
                 </th>
                 <th className="px-4 py-3 text-left">
-                    <button
+<button
                         onClick={() => handleSort("dueDate")}
-                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">Due Date
-                                        <ApperIcon name={getSortIcon("dueDate")} size={14} />
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary-700 uppercase tracking-wider hover:text-secondary-900 transition-colors duration-150">
+                        Due Date
+                        <ApperIcon name={getSortIcon("dueDate")} size={14} />
                     </button>
                 </th>
             </tr>

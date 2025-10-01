@@ -17,6 +17,7 @@ className,
       )}
       <input
         ref={ref}
+        type={type}
         className={cn(
           "w-full px-3 py-2 bg-white border rounded-md text-secondary-900",
           "focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent",

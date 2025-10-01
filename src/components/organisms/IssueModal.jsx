@@ -15,9 +15,10 @@ const IssueModal = ({ isOpen, onClose, issue = null, onSuccess }) => {
     type: "bug",
     priority: "medium",
     status: "open",
-    assignee: "",
-reporter: "",
-    dueDate: ""
+assignee: "",
+    reporter: "",
+    dueDate: "",
+    label: ""
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -32,7 +33,8 @@ reporter: "",
         status: issue.status || "open",
         assignee: issue.assignee || "",
 reporter: issue.reporter || "",
-        dueDate: issue.dueDate ? issue.dueDate.split('T')[0] : ""
+        dueDate: issue.dueDate ? issue.dueDate.split('T')[0] : "",
+        label: issue.label || ""
       });
     } else {
       setFormData({
@@ -42,8 +44,9 @@ reporter: issue.reporter || "",
         priority: "medium",
         status: "open",
 assignee: "",
-        reporter: "",
-        dueDate: ""
+reporter: "",
+        dueDate: "",
+        label: ""
       });
     }
     setErrors({});
@@ -188,8 +191,28 @@ assignee: "",
                 value={formData.assignee}
                 onChange={(e) => handleChange("assignee", e.target.value)}
                 placeholder="Person assigned to this issue"
+/>
+            </div>
+
+            {/* Label Field */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-secondary-700">
+                Label <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={formData.label}
+                onChange={(e) => handleChange('label', e.target.value)}
+                options={[
+                  { value: "", label: "Select label" },
+                  { value: "Bug", label: "Bug" },
+                  { value: "Documentation", label: "Documentation" },
+                  { value: "Duplicate", label: "Duplicate" },
+                  { value: "Enhancement", label: "Enhancement" },
+                  { value: "Invalid", label: "Invalid" },
+                  { value: "Wontfix", label: "Wontfix" }
+                ]}
               />
-</div>
+            </div>
 
             <Input
               label="Due Date"

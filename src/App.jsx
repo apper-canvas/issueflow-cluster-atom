@@ -8,6 +8,7 @@ import IssuesPage from "@/components/pages/IssuesPage";
 import BoardPage from "@/components/pages/BoardPage";
 import DashboardPage from "@/components/pages/DashboardPage";
 import Login from "@/components/pages/Login";
+import UsersPage from "@/components/pages/UsersPage";
 import Signup from "@/components/pages/Signup";
 import Callback from "@/components/pages/Callback";
 import ErrorPage from "@/components/pages/ErrorPage";
@@ -159,7 +160,8 @@ function AppContent() {
                   path="/board"
                   element={<BoardPage onCreateIssue={handleCreateIssue} />}
                 />
-                <Route path="/dashboard" element={<DashboardPage />} />
+<Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/users" element={<UsersPage />} />
               </Routes>
               <ToastContainer
                 position="top-right"

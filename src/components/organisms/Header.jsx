@@ -15,8 +15,9 @@ const Header = ({ onCreateIssue, onSearch }) => {
 
   const navItems = [
     { path: "/", label: "Issues", icon: "List" },
-    { path: "/board", label: "Board", icon: "Kanban" },
-    { path: "/dashboard", label: "Dashboard", icon: "BarChart3" }
+{ path: "/board", label: "Board", icon: "Kanban" },
+    { path: "/dashboard", label: "Dashboard", icon: "BarChart3" },
+    { path: "/users", label: "Users", icon: "Users" }
   ];
 
   const handleSearch = (value) => {

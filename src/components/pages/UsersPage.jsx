@@ -21,20 +21,23 @@ const UsersPage = () => {
     loadUsers();
   }, []);
 
-  const loadUsers = async () => {
+const loadUsers = async () => {
     setLoading(true);
     setError(null);
     try {
       const response = await userService.getAll();
-      if (response.success) {
-        setUsers(response.data || []);
+      if (response && response.success) {
+        setUsers(Array.isArray(response.data) ? response.data : []);
       } else {
-        setError(response.message || 'Failed to load users');
-        toast.error(response.message || 'Failed to load users');
+        const errorMessage = response?.message || 'Failed to load users';
+        setError(errorMessage);
+        setUsers([]);
+        toast.error(errorMessage);
       }
     } catch (err) {
-      const errorMessage = err?.response?.data?.message || err.message || 'Failed to load users';
+      const errorMessage = err?.response?.data?.message || err?.message || 'Failed to load users';
       setError(errorMessage);
+      setUsers([]);
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -79,16 +82,16 @@ const UsersPage = () => {
     loadUsers();
   };
 
-  const filteredUsers = users.filter(user => {
-    if (!searchQuery) return true;
+const filteredUsers = Array.isArray(users) ? users.filter(user => {
+    if (!searchQuery || !user) return true;
     const query = searchQuery.toLowerCase();
     return (
-      user.Name?.toLowerCase().includes(query) ||
-      user.first_name_c?.toLowerCase().includes(query) ||
-      user.last_name_c?.toLowerCase().includes(query) ||
-      user.email_c?.toLowerCase().includes(query)
+      (user.Name && user.Name.toLowerCase().includes(query)) ||
+      (user.first_name_c && user.first_name_c.toLowerCase().includes(query)) ||
+      (user.last_name_c && user.last_name_c.toLowerCase().includes(query)) ||
+      (user.email_c && user.email_c.toLowerCase().includes(query))
     );
-  });
+  }) : [];
 
   if (loading) {
     return (
@@ -139,13 +142,13 @@ const UsersPage = () => {
         </div>
       </div>
 
-      {filteredUsers.length === 0 ? (
+{!Array.isArray(filteredUsers) || filteredUsers.length === 0 ? (
         <Empty 
           message={searchQuery ? "No users found matching your search" : "No users yet"} 
-          action={!searchQuery && {
+          action={!searchQuery ? {
             label: "Create User",
             onClick: handleCreateUser
-          }}
+          } : undefined}
         />
       ) : (
         <UserTable 

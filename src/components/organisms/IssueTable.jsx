@@ -135,11 +135,11 @@ const IssueTable = ({ issues, onIssueClick, sortConfig, onSort }) => {
                                     {format(new Date(issue.dueDate), "MMM d, yyyy")}
                                 </span>
                                 {isOverdue && <span className="text-xs font-semibold uppercase">Overdue</span>}
-                            </div> : <span className="text-sm text-secondary-400">No due date</span>}
+</div> : <span className="text-sm text-secondary-400">No due date</span>}
                         </td>
                     </tr>
                 );
-            })}))
+            })}
                     </tbody>
     </table>
 </div>

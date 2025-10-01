@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "@/App";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Header = ({ onCreateIssue, onSearch }) => {
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -66,9 +68,13 @@ const Header = ({ onCreateIssue, onSearch }) => {
               placeholder="Search issues..."
               className="w-80"
             />
-            <Button onClick={onCreateIssue} size="md">
+<Button onClick={onCreateIssue} size="md">
               <ApperIcon name="Plus" size={18} />
               <span className="ml-2">New Issue</span>
+            </Button>
+            <Button onClick={logout} variant="outline" size="md">
+              <ApperIcon name="LogOut" size={18} />
+              <span className="ml-2">Logout</span>
             </Button>
           </div>
 

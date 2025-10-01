@@ -53,7 +53,7 @@ const [issues, setIssues] = useState([]);
     setActiveId(event.active.id);
   };
 
-  const handleDragEnd = async (event) => {
+const handleDragEnd = async (event) => {
     const { active, over } = event;
     setActiveId(null);
 

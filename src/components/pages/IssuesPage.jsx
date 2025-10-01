@@ -55,7 +55,7 @@ const [detailModalOpen, setDetailModalOpen] = useState(false);
     }
   };
 
-  const filteredAndSortedIssues = useMemo(() => {
+const filteredAndSortedIssues = useMemo(() => {
     let filtered = [...issues];
 
     // Apply search
@@ -83,7 +83,7 @@ const [detailModalOpen, setDetailModalOpen] = useState(false);
       let aValue = a[sortConfig.key];
       let bValue = b[sortConfig.key];
 
-if (sortConfig.key === "updatedAt" || sortConfig.key === "createdAt" || sortConfig.key === "dueDate") {
+      if (sortConfig.key === "updatedAt" || sortConfig.key === "createdAt" || sortConfig.key === "dueDate") {
         aValue = aValue ? new Date(aValue).getTime() : 0;
         bValue = bValue ? new Date(bValue).getTime() : 0;
       }
@@ -96,7 +96,7 @@ if (sortConfig.key === "updatedAt" || sortConfig.key === "createdAt" || sortConf
     return filtered;
   }, [issues, searchQuery, filters, sortConfig]);
 
-  const stats = useMemo(() => ({
+const stats = useMemo(() => ({
     total: issues.length,
     open: issues.filter(i => i.status === "open").length,
     inProgress: issues.filter(i => i.status === "in-progress").length,

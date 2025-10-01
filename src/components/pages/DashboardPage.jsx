@@ -28,7 +28,7 @@ const DashboardPage = () => {
     loadIssues();
   }, []);
 
-  const statusData = useMemo(() => {
+const statusData = useMemo(() => {
     const counts = {
       open: issues.filter(i => i.status === "open").length,
       "in-progress": issues.filter(i => i.status === "in-progress").length,
@@ -105,7 +105,7 @@ const DashboardPage = () => {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
+{[
             { label: "Total Issues", value: issues.length, icon: "Inbox", color: "primary" },
             { label: "Open", value: issues.filter(i => i.status === "open").length, icon: "Circle", color: "blue" },
             { label: "In Progress", value: issues.filter(i => i.status === "in-progress").length, icon: "RefreshCw", color: "purple" },
@@ -194,7 +194,7 @@ const DashboardPage = () => {
         >
           <h3 className="text-lg font-semibold text-secondary-900 mb-4">Recent Issues</h3>
           <div className="space-y-3">
-            {issues.slice(0, 5).map((issue) => (
+{issues.slice(0, 5).map((issue) => (
               <div key={issue.Id} className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary-50 transition-colors duration-150">
                 <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                   issue.priority === "critical" ? "bg-red-500" :
